@@ -11,7 +11,7 @@ namespace Minesweeper_Web_App.Controllers
     public class RegistrationController : Controller
     {
         // GET: Registration
-        public String Index()
+        public ActionResult Index()
         {
             return View("RegistrationPage");
         }
