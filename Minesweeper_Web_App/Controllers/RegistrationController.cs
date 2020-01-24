@@ -16,6 +16,13 @@ namespace Minesweeper_Web_App.Controllers
             return View("RegistrationPage");
         }
 
+        /**********************************
+         * CHANGE THE AUTHENTICATE METHOD USED BELOW TO THE CREATE USER SQL
+         * METHOD THAT NEEDS TO BE CREATED
+         * 
+         * USE BELOW METHOD FOR LOGIN PAGE
+         * 
+         * */
         [HttpPost]
         public ActionResult Registration(UserModel user)
         {

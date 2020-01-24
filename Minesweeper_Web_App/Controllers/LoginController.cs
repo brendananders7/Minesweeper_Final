@@ -11,7 +11,7 @@ namespace Minesweeper_Web_App.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return View();
+            return View("Login");
         }
     }
 }
