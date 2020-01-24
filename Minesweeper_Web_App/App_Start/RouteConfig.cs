@@ -13,6 +13,14 @@ namespace Minesweeper_Web_App
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //Registration Page Route
+            routes.MapRoute(
+                name: "Registration",
+                url: "{Registration}",
+                defaults: new {controller = "Registration", action = "Index", id = UrlParameter.Optional}
+                );
+
+            //Default Route
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
