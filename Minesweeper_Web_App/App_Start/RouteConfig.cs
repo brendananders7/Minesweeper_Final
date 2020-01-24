@@ -20,6 +20,13 @@ namespace Minesweeper_Web_App
                 defaults: new {controller = "Registration", action = "Index", id = UrlParameter.Optional}
                 );
 
+            //Login Page Route
+            routes.MapRoute(
+                name: "Login",
+                url: "{Login}",
+                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
+                );
+
             //Default Route
             routes.MapRoute(
                 name: "Default",
