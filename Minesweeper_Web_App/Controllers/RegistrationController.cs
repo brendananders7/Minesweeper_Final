@@ -16,24 +16,16 @@ namespace Minesweeper_Web_App.Controllers
             return View("RegistrationPage");
         }
 
-        /**********************************
-         * CHANGE THE AUTHENTICATE METHOD USED BELOW TO THE CREATE USER SQL
-         * METHOD THAT NEEDS TO BE CREATED
-         * 
-         * USE BELOW METHOD FOR LOGIN PAGE
-         * 
-         * */
+        
         [HttpPost]
         public ActionResult Registration(UserModel user)
         {
-            //Call the Security Business Service Authenticate() method from the Login() method
-            //and save the results of the method call in a local method variable
-            SecurityService securityService = new SecurityService();
-            Boolean success = securityService.Authenticate(user);
+            RegistrationService registrationService = new RegistrationService();
+            Boolean success = registrationService.Create(user);
 
             if (success)
             {
-                return View("RegistrationSuccess", user);
+                return View("RegistrationSuccess");
             }
 
             else

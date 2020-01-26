@@ -16,14 +16,15 @@ namespace Minesweeper_Web_App
             //Registration Page Route
             routes.MapRoute(
                 name: "Registration",
-                url: "Registration/{Registration}",
+                url: "Registration",
                 defaults: new {controller = "Registration", action = "Index", id = UrlParameter.Optional}
                 );
 
             //Login Page Route
             routes.MapRoute(
                 name: "Login",
-                url: "Login/{Login}",
+                //url: "Login/{Login}",
+                url: "Login",
                 defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
                 );
 

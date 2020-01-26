@@ -11,7 +11,7 @@ namespace Minesweeper_Web_App.Services.Business.Data
     {
         string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Minesweeper;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-        public bool FindByUser(UserModel user)
+        public bool FindByUser(LoginUser user)
         {
             //start by assuming that nothing found in this query.
             bool success = false;

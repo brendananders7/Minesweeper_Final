@@ -7,12 +7,13 @@ using System.Web;
 
 namespace Minesweeper_Web_App.Services.Business
 {
-    public class SecurityService
+    public class RegistrationService
     {
-        public bool Authenticate(LoginUser user)
+        public bool Create(UserModel user)
         {
-            SecurityDAO service = new SecurityDAO();
-            return service.FindByUser(user);
+            RegisterDAO service = new RegisterDAO();
+            return service.AddByUser(user);
         }
+
     }
 }
