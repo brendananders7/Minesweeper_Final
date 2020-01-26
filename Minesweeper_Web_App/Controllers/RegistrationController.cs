@@ -25,7 +25,7 @@ namespace Minesweeper_Web_App.Controllers
 
             if (success)
             {
-                return View("RegistrationSuccess");
+                return View("RegistrationSuccess", user);
             }
 
             else
