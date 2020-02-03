@@ -33,6 +33,9 @@ namespace Minesweeper_Web_App.Controllers
                 return View("RegistrationFailure");
             }
         }
-
+        public string alreadyRegistered()
+        {
+            return "Hello World";
+        }
     }
 }
