@@ -27,12 +27,20 @@ namespace Minesweeper_Web_App
                 url: "Login",
                 defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
                 );
+            
+            //Home Page Route
+            routes.MapRoute(
+                name: "Home",
+                //url: "Login/{Login}",
+                url: "Home/{home}",
+                defaults: new { controller = "HomePage", action = "Index", id = UrlParameter.Optional }
+                );
 
             //Default Route
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "HomePage", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
