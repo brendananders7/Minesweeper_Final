@@ -10,7 +10,7 @@ namespace Minesweeper_Web_App.Models
     public class UserModel
     {
         [Required]
-        [DisplayName("First Name")]
+        [DisplayName("First Name")][MaxLength]
         public string FirstName { get; set; }
         [Required]
         [DisplayName("Last Name")]
