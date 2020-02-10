@@ -17,7 +17,7 @@ namespace Minesweeper_Web_App.Models
         public string LastName { get; set; }
         [Required]
         [DisplayName("Gender")]
-        public string Gender { get; set; }
+        public bool Gender { get; set; }
         [Required]
         [DisplayName("Age")]
         public int Age { get; set; }
