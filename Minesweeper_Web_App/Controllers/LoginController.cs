@@ -35,5 +35,7 @@ namespace Minesweeper_Web_App.Controllers
                 return View("LoginFailed");
             }
         }
+
+
     }
 }
