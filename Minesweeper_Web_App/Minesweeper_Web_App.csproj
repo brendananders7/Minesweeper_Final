@@ -217,6 +217,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GameClass.cs" />
     <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -254,6 +255,7 @@
     <Content Include="Views\HomePage\HomePage.cshtml" />
     <Content Include="Views\Shared\_GameLayout.cshtml" />
     <Content Include="Views\Shared\_GameHeader.cshtml" />
+    <Content Include="Views\Game\BuildGame.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
