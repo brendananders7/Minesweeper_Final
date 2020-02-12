@@ -1,18 +1,31 @@
 ﻿@model Minesweeper_Web_App.Models.GameClass
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>BuildGame</title>
+    <style>
+        #game_button{
+            border-radius:2px;
+            height:20px;
+            width:5%;
+            /*padding:36px 36px 36px 36px;*/
+            background-color:gainsboro;
+        }
+
+        #game_button:hover{
+            background-color:white;
+        }
+
+    </style>
 </head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+
+    <body>
+        <div class="d-flex flex-wrap p-2 bd-highlight">
+            @for (int i = 0; i < 100; i++)
+            {
+                <button id="game_button"></button>
+            }
+        </div>
+    </body>

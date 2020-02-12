@@ -212,8 +212,8 @@
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
-    <Compile Include="GameModels\Board.cs" />
-    <Compile Include="GameModels\Cell.cs" />
+    <Compile Include="Models\Board.cs" />
+    <Compile Include="Models\Cell.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
