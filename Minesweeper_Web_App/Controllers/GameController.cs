@@ -9,7 +9,7 @@ namespace Minesweeper_Web_App.Controllers
     public class GameController : Controller
     {
         // GET: Game
-        public ActionResult Index()
+        public ActionResult BuildGame()
         {
             return View();
         }
