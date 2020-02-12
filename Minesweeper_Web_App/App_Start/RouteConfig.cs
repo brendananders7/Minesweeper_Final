@@ -23,7 +23,6 @@ namespace Minesweeper_Web_App
             //Login Page Route
             routes.MapRoute(
                 name: "Login",
-                //url: "Login/{Login}",
                 url: "Login",
                 defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
                 );
@@ -31,7 +30,6 @@ namespace Minesweeper_Web_App
             //Home Page Route
             routes.MapRoute(
                 name: "Home",
-                //url: "Login/{Login}",
                 url: "Home",
                 defaults: new { controller = "HomePage", action = "Index", id = UrlParameter.Optional }
                 );
