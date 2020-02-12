@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinesweeperConsoleApp
+namespace Minesweeper_Web_App.Models
 {
     public class Cell
     {
