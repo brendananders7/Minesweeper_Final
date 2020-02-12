@@ -98,7 +98,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\bomb.png" />
+    <Content Include="Images\flag.PNG" />
     <Content Include="Images\Minesweeper HTML Background.jpeg" />
+    <Content Include="Images\questionMark.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -217,7 +220,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\GameClass.cs" />
+    <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
