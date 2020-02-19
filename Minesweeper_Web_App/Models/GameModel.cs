@@ -7,12 +7,18 @@ namespace Minesweeper_Web_App.Models
 {
     public class GameModel
     {
-        public Board board = new Board(12);
-        
+        public static Board gb = new Board(12);
+        public static List<Cell> b = new List<Cell>();
 
-        public GameModel(Board board)
+        public GameModel(Board gameBoard, List<Cell> board)
         {
-            this.board = board;
+            gb = gameBoard;
+            b = board;
+        }
+
+        public void populateGrid()
+        {
+            
         }
 
 

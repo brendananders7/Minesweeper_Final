@@ -1,4 +1,4 @@
-﻿@model Minesweeper_Web_App.Models.GameClass
+﻿@model List<Minesweeper_Web_App.Models.Cell>
 
 @{
     Layout = "~/Views/Shared/_GameLayout.cshtml";
@@ -8,8 +8,8 @@
     <style>
         #game_button{
             border-radius:2px;
-            height:20px;
-            width:5%;
+            height:250px;
+            width:25%;
             /*padding:36px 36px 36px 36px;*/
             background-color:gainsboro;
         }
@@ -21,11 +21,20 @@
     </style>
 </head>
 
-    <body>
-        <div class="d-flex flex-wrap p-2 bd-highlight">
-            @for (int i = 0; i < 100; i++)
+<body>
+    <div>
+        @using (Html.BeginForm("HandleButtonClick", "Game"))
+        {
+            for (int i = 0; i < Model.Count; i++)
             {
-                <button id="game_button"></button>
+                if(i % 10 == 0)
+                {
+                    <br />
+                }
+                <button class="#game_button" type="submit" name="btn" value="@i">
+                    ?
+                </button>
             }
-        </div>
+        }
+    </div>
     </body>
