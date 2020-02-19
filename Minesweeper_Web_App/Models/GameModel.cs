@@ -7,28 +7,33 @@ namespace Minesweeper_Web_App.Models
 {
     public class GameModel
     {
-        public static Board gb = new Board(12);
-        public static List<Cell> b = new List<Cell>();
-
-        public GameModel(Board gameBoard, List<Cell> board)
+        public Board board = new Board(12);
+        
+        //constructor 1
+        public GameModel(Board board)
         {
-            gb = gameBoard;
-            b = board;
+            this.board = board;
         }
 
-        public void populateGrid()
+        //constructor 2
+        public GameModel()
         {
             
         }
 
+        public void createGameBoard()
+        {
+            board.setUpBombs("Hard");
+            board.calculateLiveNeighbors();
+        }
 
-        //public void test()
-        //{
-        //    board.setUpBombs("Easy");
+            //public void test()
+            //{
+            //    board.setUpBombs("Easy");
 
-        //    board.calculateLiveNeighbors();
+            //    board.calculateLiveNeighbors();
 
-        //    //board.floodfill();
-        //}
-    }
+            //    //board.floodfill();
+            //}
+        }
 }
