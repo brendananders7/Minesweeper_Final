@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Minesweeper_Web_App.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,9 @@ namespace Minesweeper_Web_App.Controllers
         // GET: Game
         public ActionResult BuildGame()
         {
-            return View("BuildGame");
+            GameModel newGame = new GameModel();
+            newGame.createGameBoard();
+            return View("BuildGame", newGame);
         }
     }
 }

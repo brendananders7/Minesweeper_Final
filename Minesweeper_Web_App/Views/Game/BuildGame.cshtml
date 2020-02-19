@@ -15,6 +15,7 @@
             height: calc(8.33333333vw - 70px);
             position: relative;
             background-color: gainsboro;
+            color:transparent;
         }
 
         /*#game_button:after {
@@ -55,7 +56,8 @@
             <div class="flex-container">
                 @for (int j = 0; j < 12; j++)
                 {
-                    <button id="game_button"></button>
+                    //<button id="game_button">@Model.board.theGrid[1,1].liveNeighbors</button>
+                    <button id="game_button">@i, @j</button>
                 }
             </div>
         }

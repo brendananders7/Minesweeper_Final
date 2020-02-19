@@ -9,20 +9,31 @@ namespace Minesweeper_Web_App.Models
     {
         public Board board = new Board(12);
         
-
+        //constructor 1
         public GameModel(Board board)
         {
             this.board = board;
         }
 
+        //constructor 2
+        public GameModel()
+        {
+            
+        }
 
-        //public void test()
-        //{
-        //    board.setUpBombs("Easy");
+        public void createGameBoard()
+        {
+            board.setUpBombs("Hard");
+            board.calculateLiveNeighbors();
+        }
 
-        //    board.calculateLiveNeighbors();
+            //public void test()
+            //{
+            //    board.setUpBombs("Easy");
 
-        //    //board.floodfill();
-        //}
-    }
+            //    board.calculateLiveNeighbors();
+
+            //    //board.floodfill();
+            //}
+        }
 }
