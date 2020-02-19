@@ -6,26 +6,58 @@
 
 <head>
     <style>
-        #game_button{
-            border-radius:2px;
-            height:20px;
-            width:5%;
-            /*padding:36px 36px 36px 36px;*/
-            background-color:gainsboro;
+        #game_button {
+            border-radius: 2px;
+            display: flex;
+            min-width: 25px;
+            min-height: 25px;
+            width: calc(8.333333vw - 70px);
+            height: calc(8.33333333vw - 70px);
+            position: relative;
+            background-color: gainsboro;
+        }
+
+        /*#game_button:after {
+            content: "";
+            display: block;
+            padding-bottom: 110%;
+        }*/
+
+        #button_image{
+            position:absolute;
+            width:100%;
+            height:100%;
         }
 
         #game_button:hover{
             background-color:white;
         }
+        .flex-container{
+            justify-content:center;
+            display:flex;
+            flex-direction: row;
+            flex-wrap:nowrap;
+            position:relative;
+        }
+
+        .grid-container{
+            display:grid;  
+            bottom:0;
+        }
 
     </style>
 </head>
 
-    <body>
-        <div class="d-flex flex-wrap p-2 bd-highlight">
-            @for (int i = 0; i < 100; i++)
-            {
-                <button id="game_button"></button>
-            }
-        </div>
-    </body>
+<body>
+    <div class="grid-container">
+        @for (int i = 0; i < 12; i++)
+        {
+            <div class="flex-container">
+                @for (int j = 0; j < 12; j++)
+                {
+                    <button id="game_button"></button>
+                }
+            </div>
+        }
+    </div>
+</body>
