@@ -23,17 +23,8 @@ namespace Minesweeper_Web_App.Models
 
         public void createGameBoard()
         {
-            board.setUpBombs("Hard");
+            board.setUpBombs("Medium");
             board.calculateLiveNeighbors();
         }
-
-            //public void test()
-            //{
-            //    board.setUpBombs("Easy");
-
-            //    board.calculateLiveNeighbors();
-
-            //    //board.floodfill();
-            //}
-        }
+    }
 }

@@ -14,24 +14,37 @@
             width: calc(8.333333vw - 70px);
             height: calc(8.33333333vw - 70px);
             position: relative;
-            background-color: gainsboro;
+            background-color: lightgray;
             color:transparent;
         }
 
-        /*#game_button:after {
-            content: "";
-            display: block;
-            padding-bottom: 110%;
-        }*/
-
-        #button_image{
-            position:absolute;
-            width:100%;
-            height:100%;
+        #visited_button {
+            display: flex;
+            min-width: 25px;
+            min-height: 25px;
+            width: calc(8.333333vw - 70px);
+            height: calc(8.33333333vw - 70px);
+            position: relative;
+            background-color: whitesmoke;
+            border: 1px solid grey;
+            color: black;
+            text-align:center;
         }
 
-        #game_button:hover{
-            background-color:white;
+        #bomb_button {
+            display: flex;
+            min-width: 25px;
+            min-height: 25px;
+            width: calc(8.333333vw - 70px);
+            height: calc(8.33333333vw - 70px);
+            position: relative;
+            border: 1px solid grey;
+            background-image: url(../../Images/bomb.png);
+            background-size: 100%;
+        }
+
+        #game_button:hover {
+            background-color: white;
         }
         .flex-container{
             justify-content:center;
@@ -50,16 +63,47 @@
 </head>
 
 <body>
+    <div>Timer</div>
+
+    <!--Minesweeper Grid Container-->
     <div class="grid-container">
-        @for (int i = 0; i < 12; i++)
+        <!--ButtonClick Handler, this method displays the whole board based on cell
+            properties-->
+        @using (Html.BeginForm("HandleButtonClick", "Game"))
         {
-            <div class="flex-container">
-                @for (int j = 0; j < 12; j++)
-                {
-                    //<button id="game_button">@Model.board.theGrid[1,1].liveNeighbors</button>
-                    <button id="game_button">@i, @j</button>
-                }
-            </div>
+            for (int i = 0; i < 12; i++)
+            {
+                <div class="flex-container">
+                    @for (int j = 0; j < 12; j++)
+                    {
+                        //default game board
+                        if (Model.board.theGrid[i, j].isVisited == false)
+                        {
+                            <button type="submit" name="mine" value="@i,@j" id="game_button"></button>
+                        }
+
+                        //bomb button
+                        else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].isLive == true)
+                        {
+                            <button type="submit" name="mine" id="bomb_button" disabled></button>
+                        }
+
+                        //visited, no neighbors
+                        else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].isLive == false && Model.board.theGrid[i, j].liveNeighbors == 0)
+                        {
+                            <button type="submit" name="mine" id="visited_button" disabled></button>
+                        }
+
+                        //visited, with neighbors
+                        else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].liveNeighbors != 0)
+                        {
+                            <button type="submit" name="mine" id="visited_button" disabled>@Model.board.theGrid[i, j].liveNeighbors</button>
+                        }
+
+                    }
+                </div>
+            }
         }
+
     </div>
 </body>
