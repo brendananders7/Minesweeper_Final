@@ -18,8 +18,55 @@ namespace Minesweeper_Web_App.Models
         //constructor 2
         public GameModel()
         {
-            
+
         }
+
+        public void printBoardLose(Board myBoard)
+        {
+            for (int r = 0; r < myBoard.size; r++)
+            {
+                for (int c = 0; c < myBoard.size; c++)
+                {
+                    //All live cells(buttons) will display a bomb
+                    myBoard.theGrid[r, c].isVisited = true;
+
+                }
+            }
+        }
+
+        public void printBoardWin(Board myBoard)
+        {
+            for (int r = 0; r < myBoard.size; r++)
+            {
+                for (int c = 0; c < myBoard.size; c++)
+                {
+                    Cell cell = myBoard.theGrid[r, c];
+                    //All live cells(buttons) must be flagged to show the user they have won
+                    myBoard.theGrid[r, c].isVisited = true;
+                    if (myBoard.theGrid[r, c].isLive == true)
+                    {
+                        myBoard.theGrid[r, c].isFlagged = true;
+                    }
+                }
+            }
+        }
+
+        public bool endGameWin(Board myBoard)
+        {
+            bool check = true;
+            for (int r = 0; r < myBoard.size; r++)
+            {
+                for (int c = 0; c < myBoard.size; c++)
+                {
+                    if (myBoard.theGrid[r,c].isVisited == false && myBoard.theGrid[r, c].isLive == false)
+                    {
+                        check = false;
+                    }
+                }
+            }
+            return check;
+        }
+
 
         public void createGameBoard()
         {

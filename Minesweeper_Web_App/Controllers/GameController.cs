@@ -30,8 +30,20 @@ namespace Minesweeper_Web_App.Controllers
             //mark the cell as visited
             newGame.board.theGrid[i, j].isVisited = true;
 
+            if(newGame.endGameWin(newGame.board) == true)
+            {
+                newGame.printBoardWin(newGame.board);
+            }
+            else if(newGame.board.theGrid[i, j].isLive == true)
+            {
+                newGame.printBoardLose(newGame.board);
+            }
+
             //check for other unvisited cells
             newGame.board.floodfill(i, j);
+
+
+
             return View("BuildGame", newGame);
         }
     }
