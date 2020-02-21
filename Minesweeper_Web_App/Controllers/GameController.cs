@@ -33,17 +33,16 @@ namespace Minesweeper_Web_App.Controllers
             if(newGame.endGameWin(newGame.board) == true)
             {
                 newGame.printBoardWin(newGame.board);
+                newGame.winLose = 1;
             }
             else if(newGame.board.theGrid[i, j].isLive == true)
             {
                 newGame.printBoardLose(newGame.board);
+                newGame.winLose = 2;
             }
 
             //check for other unvisited cells
             newGame.board.floodfill(i, j);
-
-
-
             return View("BuildGame", newGame);
         }
     }

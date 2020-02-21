@@ -8,7 +8,8 @@ namespace Minesweeper_Web_App.Models
     public class GameModel
     {
         public Board board = new Board(12);
-        
+        public int winLose { get; set; }
+
         //constructor 1
         public GameModel(Board board)
         {
@@ -18,7 +19,7 @@ namespace Minesweeper_Web_App.Models
         //constructor 2
         public GameModel()
         {
-
+            winLose = 0;
         }
 
         public void printBoardLose(Board myBoard)
@@ -67,10 +68,9 @@ namespace Minesweeper_Web_App.Models
             return check;
         }
 
-
         public void createGameBoard()
         {
-            board.setUpBombs("Medium");
+            board.setUpBombs("Easy");
             board.calculateLiveNeighbors();
         }
     }
