@@ -95,70 +95,73 @@
         {
             for (int i = 0; i < 12; i++)
             {
-        <div class="flex-container">
-            @for (int j = 0; j < 12; j++)
-            {
-                //default game board
-                if (Model.board.theGrid[i, j].isVisited == false)
-                {
-                    <button type="submit" name="mine" value="@i,@j" id="game_button">?</button>
-                }
-                //visited bomb button
-                else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].isLive == true && Model.board.theGrid[i, j].isFlagged == false)
-                {
-                    <button type="submit" name="mine" value="@i,@j" id="visited_bomb_button" disabled></button>
-                }
-                //flagged cells
-                else if (Model.board.theGrid[i, j].isFlagged == true && Model.board.theGrid[i, j].isLive == true)
-                {
-                    <button type="submit" name="mine" value="@i,@j" id="flagged_button" disabled></button>
-                }
-                //visited, no neighbors
-                else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].isLive == false && Model.board.theGrid[i, j].liveNeighbors == 0)
-                {
-                    <button type="submit" name="mine" id="visited_button" disabled></button>
-                }
-                //visited, with neighbors
-                else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].liveNeighbors != 0)
-                {
-                    <button type="submit" name="mine" id="visited_button" disabled>
-                        @if (Model.board.theGrid[i, j].liveNeighbors == 1)
+                <div class="flex-container">
+                    @for (int j = 0; j < 12; j++)
+                    {
+                        //default game board
+                        if (Model.board.theGrid[i, j].isVisited == false)
                         {
-                            <font color="blue">@Model.board.theGrid[i, j].liveNeighbors</font>
+                            <button type="submit" name="mine" value="@i,@j" id="game_button">?</button>
                         }
-                        else if (Model.board.theGrid[i, j].liveNeighbors == 2)
+                        //visited bomb button
+                        else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].isLive == true && Model.board.theGrid[i, j].isFlagged == false)
                         {
-                            <font color="green">@Model.board.theGrid[i, j].liveNeighbors</font>
+                            <button type="submit" name="mine" value="@i,@j" id="visited_bomb_button" disabled></button>
                         }
-                        else if (Model.board.theGrid[i, j].liveNeighbors == 3)
+                        //flagged cells
+                        else if (Model.board.theGrid[i, j].isFlagged == true && Model.board.theGrid[i, j].isLive == true)
                         {
-                            <font color="red">@Model.board.theGrid[i, j].liveNeighbors</font>
+                            <button type="submit" name="mine" value="@i,@j" id="flagged_button" disabled></button>
                         }
-                        else if (Model.board.theGrid[i, j].liveNeighbors == 4)
+                        //visited, no neighbors
+                        else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].isLive == false && Model.board.theGrid[i, j].liveNeighbors == 0)
                         {
-                            <font color="darkblue">@Model.board.theGrid[i, j].liveNeighbors</font>
+                            <button type="submit" name="mine" id="visited_button" disabled></button>
                         }
-                        else if (Model.board.theGrid[i, j].liveNeighbors == 5)
+                        //visited, with neighbors
+                        else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].liveNeighbors != 0)
                         {
-                            <font color="darkred">@Model.board.theGrid[i, j].liveNeighbors</font>
+                            <button type="submit" name="mine" id="visited_button" disabled>
+                                @if (Model.board.theGrid[i, j].liveNeighbors == 1)
+                                {
+                                    <font color="blue">@Model.board.theGrid[i, j].liveNeighbors</font>
+                                }
+                                else if (Model.board.theGrid[i, j].liveNeighbors == 2)
+                                {
+                                    <font color="green">@Model.board.theGrid[i, j].liveNeighbors</font>
+                                }
+                                else if (Model.board.theGrid[i, j].liveNeighbors == 3)
+                                {
+                                    <font color="red">@Model.board.theGrid[i, j].liveNeighbors</font>
+                                }
+                                else if (Model.board.theGrid[i, j].liveNeighbors == 4)
+                                {
+                                    <font color="darkblue">@Model.board.theGrid[i, j].liveNeighbors</font>
+                                }
+                                else if (Model.board.theGrid[i, j].liveNeighbors == 5)
+                                {
+                                    <font color="darkred">@Model.board.theGrid[i, j].liveNeighbors</font>
+                                }
+                                else if (Model.board.theGrid[i, j].liveNeighbors == 6)
+                                {
+                                    <font color="darkcyan">@Model.board.theGrid[i, j].liveNeighbors</font>
+                                }
+                                else if (Model.board.theGrid[i, j].liveNeighbors == 7)
+                                {
+                                    <font color="black">@Model.board.theGrid[i, j].liveNeighbors</font>
+                                }
+                                else
+                                {
+                                    <font color="gray">@Model.board.theGrid[i, j].liveNeighbors</font>
+                                }
+                            </button>
                         }
-                        else if (Model.board.theGrid[i, j].liveNeighbors == 6)
-                        {
-                            <font color="darkcyan">@Model.board.theGrid[i, j].liveNeighbors</font>
-                        }
-                        else if (Model.board.theGrid[i, j].liveNeighbors == 7)
-                        {
-                            <font color="black">@Model.board.theGrid[i, j].liveNeighbors</font>
-                        }
-                        else
-                        {
-                            <font color="gray">@Model.board.theGrid[i, j].liveNeighbors</font>
-                        }
-                    </button>
-                }
+                    }
+                </div>
             }
-        </div>
         }
-        }
+    </div>
+    <div>
+        @Html.ActionLink("Reset Board", "BuildGame", new { controller = "Game" })
     </div>
 </body>

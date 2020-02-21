@@ -16,7 +16,7 @@ namespace Minesweeper_Web_App.Controllers
         public ActionResult BuildGame()
         {
             //populate the game board
-            newGame.createGameBoard();
+            newGame.createGameBoard(newGame.board);
             return View("BuildGame", newGame);
         }
 
