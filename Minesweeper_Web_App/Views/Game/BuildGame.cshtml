@@ -4,9 +4,85 @@
     Layout = "~/Views/Shared/_GameLayout.cshtml";
 }
 
-    <head>
-        <link href="~/Content/GameStyles.css" rel="stylesheet" type="text/css" />
-    </head>
+<head>
+    <style>
+        #game_button {
+            border-radius: 2px;
+            display: flex;
+            min-width: 25px;
+            min-height: 25px;
+            width: calc(8.333333vw - 70px);
+            height: calc(8.33333333vw - 70px);
+            position: relative;
+            background-color: lightgray;
+            font-size:xx-large;
+            text-align:center;
+            padding-left: 20px;
+            vertical-align: middle;
+            /*background-image:url(../../Images/questionMark.png);
+            background-size: 103%;*/
+        }
+
+        #visited_button {
+            display: flex;
+            min-width: 25px;
+            min-height: 25px;
+            width: calc(8.333333vw - 70px);
+            height: calc(8.33333333vw - 70px);
+            position: relative;
+            background-color: darkgray;
+            border: 1px solid grey;
+            color: black;
+            text-align:center;
+            font-size:xx-large;
+            padding-left: 20px;
+            vertical-align: middle;
+        }
+
+        #visited_bomb_button {
+            display: flex;
+            min-width: 25px;
+            min-height: 25px;
+            width: calc(8.333333vw - 70px);
+            height: calc(8.33333333vw - 70px);
+            position: relative;
+            border: 1px solid grey;
+            background-image: url(../../Images/bomb.png);
+            background-color:red;
+            background-size: 100%;
+        }
+
+        #flagged_button{
+            display: flex;
+            min-width: 25px;
+            min-height: 25px;
+            width: calc(8.333333vw - 70px);
+            height: calc(8.33333333vw - 70px);
+            position: relative;
+            border: 1px solid grey;
+            background-image: url(../../Images/flag.PNG);
+            background-color:darkgray;
+            background-size: 100%;
+        }
+
+        #game_button:hover {
+            background-color: white;
+        }
+        .flex-container{
+            justify-content:center;
+            display:flex;
+            flex-direction: row;
+            flex-wrap:nowrap;
+            position:relative;
+        }
+
+        .grid-container{
+            display:grid;  
+            bottom:0;
+        }
+
+    </style>
+</head>
 
 <body>
     <div>Timer</div>
@@ -19,37 +95,70 @@
         {
             for (int i = 0; i < 12; i++)
             {
-                <div class="flex-container">
-                    @for (int j = 0; j < 12; j++)
-                    {
-                        //default game board
-                        if (Model.board.theGrid[i, j].isVisited == false)
+        <div class="flex-container">
+            @for (int j = 0; j < 12; j++)
+            {
+                //default game board
+                if (Model.board.theGrid[i, j].isVisited == false)
+                {
+                    <button type="submit" name="mine" value="@i,@j" id="game_button">?</button>
+                }
+                //visited bomb button
+                else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].isLive == true && Model.board.theGrid[i, j].isFlagged == false)
+                {
+                    <button type="submit" name="mine" value="@i,@j" id="visited_bomb_button" disabled></button>
+                }
+                //flagged cells
+                else if (Model.board.theGrid[i, j].isFlagged == true && Model.board.theGrid[i, j].isLive == true)
+                {
+                    <button type="submit" name="mine" value="@i,@j" id="flagged_button" disabled></button>
+                }
+                //visited, no neighbors
+                else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].isLive == false && Model.board.theGrid[i, j].liveNeighbors == 0)
+                {
+                    <button type="submit" name="mine" id="visited_button" disabled></button>
+                }
+                //visited, with neighbors
+                else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].liveNeighbors != 0)
+                {
+                    <button type="submit" name="mine" id="visited_button" disabled>
+                        @if (Model.board.theGrid[i, j].liveNeighbors == 1)
                         {
-                            <button type="submit" name="mine" value="@i,@j" id="game_button"></button>
+                            <font color="blue">@Model.board.theGrid[i, j].liveNeighbors</font>
                         }
-
-                        //bomb button
-                        else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].isLive == true)
+                        else if (Model.board.theGrid[i, j].liveNeighbors == 2)
                         {
-                            <button type="submit" name="mine" id="bomb_button" disabled></button>
+                            <font color="green">@Model.board.theGrid[i, j].liveNeighbors</font>
                         }
-
-                        //visited, no neighbors
-                        else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].isLive == false && Model.board.theGrid[i, j].liveNeighbors == 0)
+                        else if (Model.board.theGrid[i, j].liveNeighbors == 3)
                         {
-                            <button type="submit" name="mine" id="visited_button" disabled></button>
+                            <font color="red">@Model.board.theGrid[i, j].liveNeighbors</font>
                         }
-
-                        //visited, with neighbors
-                        else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].liveNeighbors != 0)
+                        else if (Model.board.theGrid[i, j].liveNeighbors == 4)
                         {
-                            <button type="submit" name="mine" id="visited_button" disabled>@Model.board.theGrid[i, j].liveNeighbors</button>
+                            <font color="darkblue">@Model.board.theGrid[i, j].liveNeighbors</font>
                         }
-
-                    }
-                </div>
+                        else if (Model.board.theGrid[i, j].liveNeighbors == 5)
+                        {
+                            <font color="darkred">@Model.board.theGrid[i, j].liveNeighbors</font>
+                        }
+                        else if (Model.board.theGrid[i, j].liveNeighbors == 6)
+                        {
+                            <font color="darkcyan">@Model.board.theGrid[i, j].liveNeighbors</font>
+                        }
+                        else if (Model.board.theGrid[i, j].liveNeighbors == 7)
+                        {
+                            <font color="black">@Model.board.theGrid[i, j].liveNeighbors</font>
+                        }
+                        else
+                        {
+                            <font color="gray">@Model.board.theGrid[i, j].liveNeighbors</font>
+                        }
+                    </button>
+                }
             }
+        </div>
         }
-
+        }
     </div>
 </body>

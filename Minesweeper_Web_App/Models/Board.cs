@@ -113,7 +113,7 @@ namespace Minesweeper_Web_App.Models
                     break;
 
                 case "Impossible":
-                    difficultyPercentage = 4.00;
+                    difficultyPercentage = 5.00;
                     numberOfNewBombs = (int)(difficultyPercentage * size);
                     random = new Random();
 
