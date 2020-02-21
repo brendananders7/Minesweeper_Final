@@ -1,0 +1,53 @@
+﻿#game_button {
+    border-radius: 2px;
+    display: flex;
+    min-width: 25px;
+    min-height: 25px;
+    width: calc(8.333333vw - 70px);
+    height: calc(8.33333333vw - 70px);
+    position: relative;
+    background-color: lightgray;
+    color: transparent;
+}
+
+#visited_button {
+    display: flex;
+    min-width: 25px;
+    min-height: 25px;
+    width: calc(8.333333vw - 70px);
+    height: calc(8.33333333vw - 70px);
+    position: relative;
+    background-color: whitesmoke;
+    border: 1px solid grey;
+    color: black;
+    text-align: center;
+}
+
+#bomb_button {
+    display: flex;
+    min-width: 25px;
+    min-height: 25px;
+    width: calc(8.333333vw - 70px);
+    height: calc(8.33333333vw - 70px);
+    position: relative;
+    border: 1px solid grey;
+    background-image: url(../../Images/bomb.png);
+    background-size: 100%;
+}
+
+#game_button:hover {
+    background-color: white;
+}
+
+.flex-container {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: relative;
+}
+
+.grid-container {
+    display: grid;
+    bottom: 0;
+}
