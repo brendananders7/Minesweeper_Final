@@ -68,9 +68,20 @@ namespace Minesweeper_Web_App.Models
             return check;
         }
 
-        public void createGameBoard()
+
+        public void createGameBoard(Board myBoard)
         {
-            board.setUpBombs("Easy");
+            for (int i = 0; i < myBoard.size; i++)
+            {
+                for (int j = 0; j < myBoard.size; j++)
+                {
+                    myBoard.theGrid[i, j].isLive = false;
+                    myBoard.theGrid[i, j].isVisited = false;
+                    myBoard.theGrid[i, j].isFlagged = false;
+                    //myBoard.theGrid[i, j].liveNeighbors = 0;
+                }
+            }
+            board.setUpBombs("Medium");
             board.calculateLiveNeighbors();
         }
     }
