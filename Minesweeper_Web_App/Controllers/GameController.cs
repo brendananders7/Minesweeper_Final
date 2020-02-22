@@ -17,6 +17,7 @@ namespace Minesweeper_Web_App.Controllers
         {
             //populate the game board
             newGame.createGameBoard(newGame.board);
+            newGame.winLose = 0;
             return View("BuildGame", newGame);
         }
 

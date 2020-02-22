@@ -79,6 +79,7 @@ namespace Minesweeper_Web_App.Models
                     myBoard.theGrid[i, j].isVisited = false;
                     myBoard.theGrid[i, j].isFlagged = false;
                     //myBoard.theGrid[i, j].liveNeighbors = 0;
+                    
                 }
             }
             board.setUpBombs("Medium");
