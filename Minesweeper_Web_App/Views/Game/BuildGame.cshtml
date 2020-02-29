@@ -2,108 +2,34 @@
 
 @{
     Layout = "~/Views/Shared/_GameLayout.cshtml";
+    AjaxOptions ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "minesweeper_grid"
+    };
 }
 
-    <head>
-        <link href="~/Content/GameStyles.css" rel="stylesheet" type="text/css" />
-        <script>
-            function winBox() {
-                alert("You have won!");
-            }
-
-            function loseBox() {
-                alert("You have lost, RIP to you fam");
-            }
-        </script>
-    </head>
-
-<body>
+@using (Ajax.BeginForm("HandleButtonClick", "Game", ajaxOptions))
+{
     <div>Timer</div>
 
     <!--Minesweeper Grid Container-->
-    <div class="grid-container">
+    <div class="grid-container" id="minesweeper_grid">
         <!--ButtonClick Handler, this method displays the whole board based on cell
             properties-->
-        @using (Html.BeginForm("HandleButtonClick", "Game"))
-        {
-            for (int i = 0; i < 12; i++)
-            {
-                <div class="flex-container">
-                    @for (int j = 0; j < 12; j++)
-                    {
-                        //default game board
-                        if (Model.board.theGrid[i, j].isVisited == false)
-                        {
-                            <button type="submit" name="mine" value="@i,@j" id="game_button">?</button>
-                        }
-                        //visited bomb button
-                        else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].isLive == true && Model.board.theGrid[i, j].isFlagged == false)
-                        {
-                            <button type="submit" name="mine" value="@i,@j" id="visited_bomb_button" disabled></button>
-                        }
-                        //flagged cells
-                        else if (Model.board.theGrid[i, j].isFlagged == true && Model.board.theGrid[i, j].isLive == true)
-                        {
-                            <button type="submit" name="mine" value="@i,@j" id="flagged_button" disabled></button>
-                        }
-                        //visited, no neighbors
-                        else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].isLive == false && Model.board.theGrid[i, j].liveNeighbors == 0)
-                        {
-                            <button type="submit" name="mine" id="visited_button" disabled></button>
-                        }
-                        //visited, with neighbors
-                        else if (Model.board.theGrid[i, j].isVisited == true && Model.board.theGrid[i, j].liveNeighbors != 0)
-                        {
-                            <button type="submit" name="mine" id="visited_button" disabled>
-                                @if (Model.board.theGrid[i, j].liveNeighbors == 1)
-                                {
-                                    <font color="blue">@Model.board.theGrid[i, j].liveNeighbors</font>
-                                }
-                                else if (Model.board.theGrid[i, j].liveNeighbors == 2)
-                                {
-                                    <font color="green">@Model.board.theGrid[i, j].liveNeighbors</font>
-                                }
-                                else if (Model.board.theGrid[i, j].liveNeighbors == 3)
-                                {
-                                    <font color="red">@Model.board.theGrid[i, j].liveNeighbors</font>
-                                }
-                                else if (Model.board.theGrid[i, j].liveNeighbors == 4)
-                                {
-                                    <font color="darkblue">@Model.board.theGrid[i, j].liveNeighbors</font>
-                                }
-                                else if (Model.board.theGrid[i, j].liveNeighbors == 5)
-                                {
-                                    <font color="darkred">@Model.board.theGrid[i, j].liveNeighbors</font>
-                                }
-                                else if (Model.board.theGrid[i, j].liveNeighbors == 6)
-                                {
-                                    <font color="darkcyan">@Model.board.theGrid[i, j].liveNeighbors</font>
-                                }
-                                else if (Model.board.theGrid[i, j].liveNeighbors == 7)
-                                {
-                                    <font color="black">@Model.board.theGrid[i, j].liveNeighbors</font>
-                                }
-                                else
-                                {
-                                    <font color="gray">@Model.board.theGrid[i, j].liveNeighbors</font>
-                                }
-                            </button>
-                        }
-                    }
-                </div>
-            }
-        }
+        @Html.Partial("~/Views/Shared/_MinesweeperContainer.cshtml")
     </div>
 
-    @if(Model.winLose == 1)
+    if (Model.winLose == 1)
     {
         <script>winBox();</script>
     }
-    else if(Model.winLose == 2)
+    else if (Model.winLose == 2)
     {
         <script>loseBox();</script>
     }
     <div>
         @Html.ActionLink("Reset Board", "BuildGame", new { controller = "Game" })
     </div>
-</body>
+}

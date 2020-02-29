@@ -21,6 +21,7 @@ namespace Minesweeper_Web_App.Controllers
             return View("BuildGame", newGame);
         }
 
+        [HttpPost]
         public ActionResult HandleButtonClick(string mine)
         {
             //split the coordinate string submitted by the button
@@ -44,7 +45,7 @@ namespace Minesweeper_Web_App.Controllers
 
             //check for other unvisited cells
             newGame.board.floodfill(i, j);
-            return View("BuildGame", newGame);
+            return PartialView("~/Views/Shared/_MinesweeperContainer.cshtml", newGame);
         }
     }
 }
