@@ -16,19 +16,11 @@
 
     <!--Minesweeper Grid Container-->
     <div class="grid-container" id="minesweeper_grid">
-        <!--ButtonClick Handler, this method displays the whole board based on cell
-            properties-->
+        <!--Calls the partial page that builds the minesweeper board game view-->
         @Html.Partial("~/Views/Shared/_MinesweeperContainer.cshtml")
     </div>
 
-    if (Model.winLose == 1)
-    {
-        <script>winBox();</script>
-    }
-    else if (Model.winLose == 2)
-    {
-        <script>loseBox();</script>
-    }
+
     <div>
         @Html.ActionLink("Reset Board", "BuildGame", new { controller = "Game" })
     </div>
