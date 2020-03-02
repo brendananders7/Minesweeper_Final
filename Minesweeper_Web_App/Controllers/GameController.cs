@@ -21,12 +21,17 @@ namespace Minesweeper_Web_App.Controllers
             return View("BuildGame", newGame);
         }
 
+
+
         public ActionResult HandleButtonClick(string mine)
         {
             //split the coordinate string submitted by the button
             string[] coordinates = mine.Split(',');
             int i = Int32.Parse(coordinates[0]);
             int j = Int32.Parse(coordinates[1]);
+
+            Tuple<Cell[,], Cell> tuple;
+            tuple = new Tuple<Cell[,], Cell>(newGame.board.theGrid, newGame.board.theGrid[i, j]);
             
             //mark the cell as visited
             newGame.board.theGrid[i, j].isVisited = true;

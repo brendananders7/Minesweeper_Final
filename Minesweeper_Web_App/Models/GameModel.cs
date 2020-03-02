@@ -82,7 +82,7 @@ namespace Minesweeper_Web_App.Models
                     
                 }
             }
-            board.setUpBombs("Medium");
+            board.setUpBombs("Easy");
             board.calculateLiveNeighbors();
         }
     }
