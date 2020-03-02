@@ -6,7 +6,18 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/GameStyles.css" rel="stylesheet" type="text/css" />
+    <script>
+        function winBox() {
+            alert("You have won!");
+        }
 
+        function loseBox() {
+            alert("You have lost, RIP to you fam");
+        }
+    </script>
     <title>@Page.Title</title>
     @RenderSection("head", required: false)
 </head>
