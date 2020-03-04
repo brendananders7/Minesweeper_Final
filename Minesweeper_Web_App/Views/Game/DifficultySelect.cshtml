@@ -1,0 +1,25 @@
+﻿@model Minesweeper_Web_App.Models.GameModel
+
+@{
+    ViewBag.Title = "DifficultySelect";
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
+}
+
+<h2>Select The Difficulty</h2>
+
+@using (Html.BeginForm("BuildGame", "Game"))
+{
+
+    <div class="custom-radio">
+        <input type="radio" name="difficulty" value="1" checked="checked" /><label>Easy</label><br />
+        <input type="radio" name="difficulty" value="2" /><label>Medium</label><br />
+        <input type="radio" name="difficulty" value="3" /><label>Hard</label><br />
+        <input type="radio" name="difficulty" value="4" /><label>Impossible</label><br />
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="PLAY!" name="difficulty" class="btn-outline-danger" />
+        </div>
+    </div>
+}
+

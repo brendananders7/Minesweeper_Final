@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -7,8 +8,11 @@ namespace Minesweeper_Web_App.Models
 {
     public class GameModel
     {
+
         public Board board = new Board(12);
         public int winLose { get; set; }
+        public int difficulty{ get; set; }
+        public Stopwatch timer{ get; set; }
 
         //constructor 1
         public GameModel(Board board)
@@ -19,6 +23,8 @@ namespace Minesweeper_Web_App.Models
         //constructor 2
         public GameModel()
         {
+            timer = new Stopwatch();
+            difficulty = 1;
             winLose = 0;
         }
 
@@ -69,7 +75,7 @@ namespace Minesweeper_Web_App.Models
         }
 
 
-        public void createGameBoard(Board myBoard)
+        public void createGameBoard(Board myBoard, int difficulty)
         {
             for (int i = 0; i < myBoard.size; i++)
             {
@@ -82,7 +88,22 @@ namespace Minesweeper_Web_App.Models
                     
                 }
             }
-            board.setUpBombs("Easy");
+            if (difficulty == 1)
+            {
+                board.setUpBombs("Easy");
+            }
+            else if (difficulty == 2)
+            {
+                board.setUpBombs("Medium");
+            }
+            else if (difficulty == 3)
+            {
+                board.setUpBombs("Hard");
+            }
+            else if (difficulty == 4)
+            {
+                board.setUpBombs("Impossible");
+            }
             board.calculateLiveNeighbors();
         }
     }

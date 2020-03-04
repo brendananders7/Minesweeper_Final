@@ -103,7 +103,8 @@
     {
         <script>loseBox();</script>
     }
-    <div>
-        @Html.ActionLink("Reset Board", "BuildGame", new { controller = "Game" })
-    </div>
+<div>
+    @Html.ActionLink("Reset Board", "BuildGame", new { controller = "Game" })
+    @Html.ActionLink("Change Difficulty", "DifficultySelect", new { controller = "Game" })
+</div>
 </body>

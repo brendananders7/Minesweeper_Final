@@ -13,12 +13,21 @@ namespace Minesweeper_Web_App.Controllers
         static GameModel newGame = new GameModel();
 
         // GET: Game
-        public ActionResult BuildGame()
+        public ActionResult BuildGame(string difficulty)
         {
-            //populate the game board
-            newGame.createGameBoard(newGame.board);
+            if (difficulty != null)
+            {
+                newGame.difficulty = Int32.Parse(difficulty);
+            }
+            newGame.createGameBoard(newGame.board, newGame.difficulty);
+            newGame.timer.Start();
             newGame.winLose = 0;
             return View("BuildGame", newGame);
+        }
+
+        public ActionResult DifficultySelect()
+        {
+            return View("DifficultySelect");
         }
 
         [HttpPost]
