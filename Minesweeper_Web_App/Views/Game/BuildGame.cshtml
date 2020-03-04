@@ -12,7 +12,29 @@
 
 @using (Ajax.BeginForm("HandleButtonClick", "Game", ajaxOptions))
 {
-    <div>Timer</div>
+    <div>
+
+        <h2>Your Time: @Math.Round(Model.timer.Elapsed.TotalSeconds, 2)</h2>
+    
+    </div>
+    <div>
+        @if (Model.difficulty == 1)
+        {
+        <h2>Difficulty: Easy</h2>
+        }
+        else if (Model.difficulty == 2)
+        {
+        <h2>Difficulty: Medium</h2>
+        }
+        else if (Model.difficulty == 3)
+        {
+        <h2>Difficulty: Hard</h2>
+        }
+        else if (Model.difficulty == 4)
+        {
+        <h2>Difficulty: Impossible</h2>
+        }
+    </div>
 
     <!--Minesweeper Grid Container-->
     <div class="grid-container" id="minesweeper_grid">
@@ -24,4 +46,8 @@
     <div>
         @Html.ActionLink("Reset Board", "BuildGame", new { controller = "Game" })
     </div>
+    <div>
+        @Html.ActionLink("Change Difficulty", "DifficultySelect", new { controller = "Game" })
+    </div>
+
 }
