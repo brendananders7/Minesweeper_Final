@@ -84,6 +84,7 @@ namespace Minesweeper_Web_App.Models
                     myBoard.theGrid[i, j].isLive = false;
                     myBoard.theGrid[i, j].isVisited = false;
                     myBoard.theGrid[i, j].isFlagged = false;
+                    timer.Restart();
                     //myBoard.theGrid[i, j].liveNeighbors = 0;
                     
                 }
