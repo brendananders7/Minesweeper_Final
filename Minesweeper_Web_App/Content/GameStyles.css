@@ -1,22 +1,18 @@
 ﻿#game_button {
     border-radius: 2px;
-    display: flex;
     min-width: 25px;
     min-height: 25px;
     width: calc(8.333333vw - 70px);
     height: calc(8.33333333vw - 70px);
     position: relative;
     background-color: lightgray;
-    font-size: xx-large;
-    text-align: center;
-    padding-left: 20px;
-    vertical-align: middle;
-    /*background-image:url(../../Images/questionMark.png);
-            background-size: 103%;*/
+    font-size: large;
+    text-align: center !important;
+    vertical-align: middle !important;
+    padding:0px !important;
 }
 
 #visited_button {
-    display: flex;
     min-width: 25px;
     min-height: 25px;
     width: calc(8.333333vw - 70px);
@@ -25,14 +21,12 @@
     background-color: darkgray;
     border: 1px solid grey;
     color: black;
-    text-align: center;
-    font-size: xx-large;
-    padding-left: 20px;
-    vertical-align: middle;
+    text-align: center !important;
+    font-size: large;
+    vertical-align: middle !important;
 }
 
 #visited_bomb_button {
-    display: flex;
     min-width: 25px;
     min-height: 25px;
     width: calc(8.333333vw - 70px);
@@ -45,7 +39,6 @@
 }
 
 #flagged_button {
-    display: flex;
     min-width: 25px;
     min-height: 25px;
     width: calc(8.333333vw - 70px);
@@ -73,21 +66,3 @@
     display: grid;
     bottom: 0;
 }
-.overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.7);
-    transition: opacity 500ms;
-    visibility: hidden;
-    opacity: 0;
-}
-
-.overlay:target {
-        visibility: visible;
-        opacity: 1;
-
-}
-

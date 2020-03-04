@@ -34,12 +34,7 @@ namespace Minesweeper_Web_App
                 defaults: new { controller = "HomePage", action = "Index", id = UrlParameter.Optional }
                 );
 
-            routes.MapRoute(
-                name: "Minesweeper",
-                url: "Minesweeper",
-                defaults: new { controller = "Game", action = "BuildGame", id = UrlParameter.Optional }
-            );
-
+            //Game Page Route
             routes.MapRoute(
                 name: "Minesweeper",
                 url: "Minesweeper",
