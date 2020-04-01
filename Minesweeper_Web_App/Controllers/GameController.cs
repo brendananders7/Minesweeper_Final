@@ -1,9 +1,11 @@
 ﻿using Minesweeper_Web_App.Models;
+using Minesweeper_Web_App.Services.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace Minesweeper_Web_App.Controllers
 {
@@ -11,6 +13,8 @@ namespace Minesweeper_Web_App.Controllers
     {
         //initialize game
         static GameModel newGame = new GameModel();
+
+        GameService service = new GameService();
 
         // GET: Game
         public ActionResult BuildGame(string difficulty)
@@ -55,6 +59,23 @@ namespace Minesweeper_Web_App.Controllers
             //check for other unvisited cells
             newGame.board.floodfill(i, j);
             return PartialView("~/Views/Shared/_MinesweeperContainer.cshtml", newGame);
+        }
+
+        /*
+         * This method serializes a GameModel object, passes the string in JSON format to GameDAO.saveGame(), 
+         * where it is saved to the database
+         */
+        [HttpPost]
+        public ActionResult HandleSaveClick()
+        {
+            //instantiate new JavaScriptSerializer
+            string gameJSON = new JavaScriptSerializer().Serialize(newGame);
+
+            //call service in GameDAO, pass gameJSON
+            bool save = service.SaveGame(gameJSON);
+
+            //return BuildGame view
+            return View("BuildGame", newGame);
         }
     }
 }

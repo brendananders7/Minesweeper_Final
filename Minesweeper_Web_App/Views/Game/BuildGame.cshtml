@@ -14,25 +14,25 @@
 {
     <div>
 
-        
-    
+
+
     </div>
     <div>
         @if (Model.difficulty == 1)
         {
-        <h2>Difficulty: Easy</h2>
+            <h2>Difficulty: Easy</h2>
         }
         else if (Model.difficulty == 2)
         {
-        <h2>Difficulty: Medium</h2>
+            <h2>Difficulty: Medium</h2>
         }
         else if (Model.difficulty == 3)
         {
-        <h2>Difficulty: Hard</h2>
+            <h2>Difficulty: Hard</h2>
         }
         else if (Model.difficulty == 4)
         {
-        <h2>Difficulty: Impossible</h2>
+            <h2>Difficulty: Impossible</h2>
         }
     </div>
 
@@ -42,12 +42,16 @@
         @Html.Partial("~/Views/Shared/_MinesweeperContainer.cshtml")
     </div>
 
-
     <div>
         @Html.ActionLink("Reset Board", "BuildGame", new { controller = "Game" })
     </div>
     <div>
         @Html.ActionLink("Change Difficulty", "DifficultySelect", new { controller = "Game" })
     </div>
-
+}
+@using (Html.BeginForm("HandleSaveClick", "Game"))
+{
+    <div>
+        <button type="submit" name="" value="" id="">Save</button>
+    </div>
 }

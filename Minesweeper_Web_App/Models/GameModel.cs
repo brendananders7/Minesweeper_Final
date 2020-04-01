@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace Minesweeper_Web_App.Models
 {
     public class GameModel
     {
-
+        [DataMember]
         public Board board = new Board(12);
+        [DataMember]
         public int winLose { get; set; }
+        [DataMember]
         public int difficulty{ get; set; }
+        [DataMember]
         public Stopwatch timer{ get; set; }
 
         //constructor 1
