@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,23 +10,32 @@ namespace Minesweeper_Web_App.Models
     public class Board
     {
         //Board is square, size 12
+        [DataMember]
         public int size { get; set; }
 
+        [DataMember]
         //Percentage of cells that will be set to live
         public double difficultyPercentage { get; set; }
 
         //number of bombs that will be spawned
+        [DataMember]
         public int numberOfNewBombs { get; set; }
 
         //Used to make sure that the correct amount of bombs will be spawned
+        [DataMember]
         public int numberOfBombsPlaced { get; set; }
 
         //2d array of cell objects
+        [DataMember]
         public Cell[,] theGrid;
 
         //Used to spawn the bombs at random cells
         Random random = new Random();
 
+        public Board()
+        {
+
+        }
         //constructor
         public Board(int s)
         {

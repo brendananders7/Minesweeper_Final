@@ -1,8 +1,12 @@
 ﻿using Minesweeper_Web_App.Models;
 using Minesweeper_Web_App.Services.Business;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -68,11 +72,24 @@ namespace Minesweeper_Web_App.Controllers
         [HttpPost]
         public ActionResult HandleSaveClick()
         {
-            //instantiate new JavaScriptSerializer
-            string gameJSON = new JavaScriptSerializer().Serialize(newGame);
+            //Using JsonConvert library to serialize object
+            string gameJSON = JsonConvert.SerializeObject(newGame);
 
             //call service in GameDAO, pass gameJSON
             bool save = service.SaveGame(gameJSON);
+
+            //return BuildGame view
+            return View("BuildGame", newGame);
+        }
+
+        [HttpPost]
+        public ActionResult HandleLoadClick()
+        {
+            //getting JSON string from the database
+            string gameJSON = service.LoadGame();
+
+            //Using JsonConvert library to deserialize object
+            newGame = JsonConvert.DeserializeObject<GameModel>(gameJSON);
 
             //return BuildGame view
             return View("BuildGame", newGame);

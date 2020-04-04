@@ -17,5 +17,14 @@ namespace Minesweeper_Web_App.Services.Business
             GameDAO service = new GameDAO();
             return service.create(gameJSON);
         }
+
+        /*
+         * This function instantiates a new GameDAO and calls read() method to load a game from the database
+         */
+        public string LoadGame()
+        {
+            GameDAO service = new GameDAO();
+            return service.read();
+        }
     }
 }

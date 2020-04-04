@@ -24,6 +24,10 @@ namespace Minesweeper_Web_App.Models
         public bool isFlagged { get; set; }
 
         //constructor
+        public Cell()
+        {
+
+        }
         public Cell(int r, int c)
         {
             rowNumber = r;
