@@ -20,7 +20,7 @@ namespace MinesweeperService
         // TODO: Add your service operations here
     }
 
-
+    /*
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
     public class CompositeType
@@ -41,5 +41,5 @@ namespace MinesweeperService
             get { return stringValue; }
             set { stringValue = value; }
         }
-    }
+    }*/
 }
