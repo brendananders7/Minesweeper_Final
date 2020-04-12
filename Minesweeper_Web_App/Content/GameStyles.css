@@ -38,6 +38,17 @@
     background-size: 100%;
 }
 
+#right_click_button {
+    min-width: 25px;
+    min-height: 25px;
+    width: calc(8.333333vw - 70px);
+    height: calc(8.33333333vw - 70px);
+    position: relative;
+    border: 1px solid grey;
+    background-image: url(../../Images/flag.PNG);
+    background-size: 100%;
+}
+
 #flagged_button {
     min-width: 25px;
     min-height: 25px;

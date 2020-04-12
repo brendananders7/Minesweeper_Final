@@ -18,7 +18,7 @@ namespace Minesweeper_Web_App.Controllers
         //initialize game
         static GameModel newGame = new GameModel();
 
-        GameService service = new GameService();
+        GameBusinessService service = new GameBusinessService();
 
         // GET: Game
         public ActionResult BuildGame(string difficulty)
@@ -46,22 +46,25 @@ namespace Minesweeper_Web_App.Controllers
             int i = Int32.Parse(coordinates[0]);
             int j = Int32.Parse(coordinates[1]);
             
-            //mark the cell as visited
-            newGame.board.theGrid[i, j].isVisited = true;
+            if(!newGame.board.theGrid[i, j].isFlagged)
+            {
+                //mark the cell as visited
+                newGame.board.theGrid[i, j].isVisited = true;
 
-            if(newGame.endGameWin(newGame.board) == true)
+                //check for other unvisited cells
+                newGame.board.floodfill(i, j);
+            }
+
+            if (newGame.endGameWin(newGame.board) == true)
             {
                 newGame.printBoardWin(newGame.board);
                 newGame.winLose = 1;
             }
-            else if(newGame.board.theGrid[i, j].isLive == true)
+            else if (newGame.board.theGrid[i, j].isLive == true)
             {
                 newGame.printBoardLose(newGame.board);
                 newGame.winLose = 2;
             }
-
-            //check for other unvisited cells
-            newGame.board.floodfill(i, j);
             return PartialView("~/Views/Shared/_MinesweeperContainer.cshtml", newGame);
         }
 
@@ -94,5 +97,17 @@ namespace Minesweeper_Web_App.Controllers
             //return BuildGame view
             return View("BuildGame", newGame);
         }
+
+        public ActionResult HandleRightClick(string mine)
+        {
+            string[] coordinates = mine.Split(',');
+            int i = Int32.Parse(coordinates[0]);
+            int j = Int32.Parse(coordinates[1]);
+
+            newGame.board.theGrid[i, j].isFlagged = !newGame.board.theGrid[i, j].isFlagged;
+            return View("BuildGame", newGame);
+            //return PartialView("~/Views/Shared/_MinesweeperContainer.cshtml", newGame);
+        }
+
     }
 }

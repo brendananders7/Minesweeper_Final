@@ -7,8 +7,11 @@ using System.Web;
 
 namespace Minesweeper_Web_App.Models
 {
+    [DataContract]
     public class GameModel
     {
+        //[DataMember]
+        //public int id{ get; set; }
         [DataMember]
         public Board board = new Board(12);
         [DataMember]

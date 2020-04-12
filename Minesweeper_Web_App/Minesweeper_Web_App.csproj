@@ -235,7 +235,7 @@
     <Compile Include="Services\Business\Data\GameDAO.cs" />
     <Compile Include="Services\Business\Data\RegisterDAO.cs" />
     <Compile Include="Services\Business\Data\SecurityDAO.cs" />
-    <Compile Include="Services\Business\GameService.cs" />
+    <Compile Include="Services\Business\GameBusinessService.cs" />
     <Compile Include="Services\Business\RegistrationService.cs" />
     <Compile Include="Services\Business\SecurityService.cs" />
   </ItemGroup>

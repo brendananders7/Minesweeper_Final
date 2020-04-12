@@ -9,14 +9,33 @@
         UpdateTargetId = "minesweeper_grid"
     };
 }
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Hello World</title>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $(document).contextmenu(function () {
+                    return false;
+                });
 
+
+                $('.flagged-button').mousedown(function () {
+                    if (event.which == 3) {
+                        console.log("event 3, testing right click");
+                        console.log(this.getAttribute("value"));
+
+                        $.post("@Url.Action("HandleRightClick", "Game")", { mine: this.getAttribute("value") }, function (data) {
+                            console.log(data);
+                            $("body").html(data);
+                        });
+                    }
+                });
+            });
+        </script>
+    </head>
 @using (Ajax.BeginForm("HandleButtonClick", "Game", ajaxOptions))
 {
-    <div>
-
-
-
-    </div>
     <div>
         @if (Model.difficulty == 1)
         {

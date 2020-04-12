@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Minesweeper_Web_App.Services.Business
 {
-    public class GameService
+    public class GameBusinessService
     {
         /*
          * This function instantiates a new GameDAO and calls create() method to save a game to the database
@@ -25,6 +25,12 @@ namespace Minesweeper_Web_App.Services.Business
         {
             GameDAO service = new GameDAO();
             return service.read();
+        }
+
+        public string GetGameModel(int id)
+        {
+            GameDAO service = new GameDAO();
+            return service.readById(id);
         }
     }
 }
