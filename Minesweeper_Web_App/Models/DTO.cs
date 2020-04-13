@@ -9,7 +9,7 @@ namespace Minesweeper_Web_App.Models
     [DataContract]
     public class DTO
     {
-        public DTO(int errorCode, string errorMsg, GameModel data)
+        public DTO(int errorCode, string errorMsg, string data)
         {
             this.errorCode = errorCode;
             this.errorMsg = errorMsg;
@@ -21,6 +21,6 @@ namespace Minesweeper_Web_App.Models
         [DataMember]
         public string errorMsg{ get; set; }
         [DataMember]
-        public GameModel data{ get; set; }
+        public string data{ get; set; }
     }
 }

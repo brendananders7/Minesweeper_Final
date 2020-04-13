@@ -18,8 +18,9 @@ namespace MinesweeperService
         public DTO GetGameModel(string id)
         {
             GameBusinessService service = new GameBusinessService();
+            int gameId = Int32.Parse(id);
 
-            DTO dto = service.GetById(id);
+            DTO dto = new DTO(0, "OK", service.GetGameModel(gameId));
 
             return dto;
         }
