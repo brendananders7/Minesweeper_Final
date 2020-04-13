@@ -68,7 +68,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO.cs" />
     <Compile Include="GameService.svc.cs">
       <DependentUpon>GameService.svc</DependentUpon>
     </Compile>

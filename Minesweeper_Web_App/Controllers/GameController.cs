@@ -75,11 +75,8 @@ namespace Minesweeper_Web_App.Controllers
         [HttpPost]
         public ActionResult HandleSaveClick()
         {
-            //Using JsonConvert library to serialize object
-            string gameJSON = JsonConvert.SerializeObject(newGame);
-
-            //call service in GameDAO, pass gameJSON
-            bool save = service.SaveGame(gameJSON);
+            //call SaveGame in GameBusinessService, pass gameJSON
+            bool save = service.SaveGame(newGame);
 
             //return BuildGame view
             return View("BuildGame", newGame);
@@ -88,11 +85,8 @@ namespace Minesweeper_Web_App.Controllers
         [HttpPost]
         public ActionResult HandleLoadClick()
         {
-            //getting JSON string from the database
-            string gameJSON = service.LoadGame();
-
-            //Using JsonConvert library to deserialize object
-            newGame = JsonConvert.DeserializeObject<GameModel>(gameJSON);
+            //call LoadGame from GameBusinessService
+            newGame = service.LoadGame();
 
             //return BuildGame view
             return View("BuildGame", newGame);

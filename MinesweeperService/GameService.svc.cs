@@ -15,24 +15,11 @@ namespace MinesweeperService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class GameService : IGameService
     {
-        GameModel game;
-
-        public GameService()
-        {
-            game = new GameModel();
-        }
-
         public DTO GetGameModel(string id)
         {
             GameBusinessService service = new GameBusinessService();
 
-            int gameId = Int32.Parse(id);
-
-            string gameJSON = service.GetGameModel(gameId);
-
-            game = JsonConvert.DeserializeObject<GameModel>(gameJSON);
-
-            DTO dto = new DTO(0, "OK", game);
+            DTO dto = service.GetById(id);
 
             return dto;
         }
