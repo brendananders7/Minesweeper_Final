@@ -49,7 +49,7 @@ namespace Minesweeper_Web_App.Services.Business
         /*
          * Tis function finds a specific game by its id in the db.
          */
-        public DTO GetById(string id)
+        public string GetById(string id)
         {
             //new GameDAO
             GameDAO service = new GameDAO();
@@ -60,22 +60,23 @@ namespace Minesweeper_Web_App.Services.Business
             //store game found in string
             string gameJSON = service.readById(gameId);
 
-            //deserualize game and store in game
-            GameModel game = JsonConvert.DeserializeObject<GameModel>(gameJSON);
-
-            if(game == null)
+            if(gameJSON == "")
             {
                 //new DTO with no data
-                DTO dto = new DTO(-1, "Game Not Found", game);
+                DTO dto = new DTO(-1, "Game Not Found", gameJSON);
 
-                return dto;
+                string dtoJSON = JsonConvert.SerializeObject(dto);
+
+                return dtoJSON;
             }
             else
             {
                 //new DTO with data
-                DTO dto = new DTO(0, "OK", game);
+                DTO dto = new DTO(0, "OK", gameJSON);
 
-                return dto;
+                string dtoJSON = JsonConvert.SerializeObject(dto);
+
+                return dtoJSON;
             }
         }
     }

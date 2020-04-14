@@ -15,7 +15,7 @@ namespace MinesweeperService
     {
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetGameModel/{id}")]
-        DTO GetGameModel(string id);
+        string GetGameModel(string id);
 
         // TODO: Add your service operations here
     }

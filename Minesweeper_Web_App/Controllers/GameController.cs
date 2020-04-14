@@ -100,8 +100,6 @@ namespace Minesweeper_Web_App.Controllers
 
             newGame.board.theGrid[i, j].isFlagged = !newGame.board.theGrid[i, j].isFlagged;
             return View("BuildGame", newGame);
-            //return PartialView("~/Views/Shared/_MinesweeperContainer.cshtml", newGame);
         }
-
     }
 }
