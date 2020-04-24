@@ -1,6 +1,7 @@
 ﻿using Minesweeper_Web_App.Models;
 using Minesweeper_Web_App.Services.Business;
 using Newtonsoft.Json;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +11,8 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using Unity;
+using Unity.Injection;
 
 namespace Minesweeper_Web_App.Controllers
 {
@@ -20,7 +23,12 @@ namespace Minesweeper_Web_App.Controllers
 
         GameBusinessService service = new GameBusinessService();
 
+        //initialize dependency injection container
+        UnityContainer container = new UnityContainer();
+
         // GET: Game
+        //Custom Attribute to ensure that the user is logged in
+        [CustomAuthorization]
         public ActionResult BuildGame(string difficulty)
         {
             if (difficulty != null)
@@ -33,6 +41,7 @@ namespace Minesweeper_Web_App.Controllers
             return View("BuildGame", newGame);
         }
 
+        [CustomAuthorization]
         public ActionResult DifficultySelect()
         {
             return View("DifficultySelect");
@@ -75,21 +84,46 @@ namespace Minesweeper_Web_App.Controllers
         [HttpPost]
         public ActionResult HandleSaveClick()
         {
-            //call SaveGame in GameBusinessService, pass gameJSON
-            bool save = service.SaveGame(newGame);
+            //declare logger type, then intialize
+            container.RegisterType<ILogger, Logger>();
+            var logger = container.Resolve<ILogger>();
+            logger = LogManager.GetLogger("minesweeperLogRules");
 
-            //return BuildGame view
-            return View("BuildGame", newGame);
+            try
+            {
+                //call SaveGame in GameBusinessService, pass gameJSON
+                bool save = service.SaveGame(newGame);
+                logger.Info("Successful save");
+                //return BuildGame view
+                return View("BuildGame", newGame);
+            }
+            catch (Exception e)
+            {
+                logger.Error("Failed to save: " + e.Message);
+                return Content(e.Message);
+            }
         }
 
         [HttpPost]
         public ActionResult HandleLoadClick()
         {
-            //call LoadGame from GameBusinessService
-            newGame = service.LoadGame();
+            container.RegisterType<ILogger, Logger>();
+            var logger = container.Resolve<ILogger>();
+            logger = LogManager.GetLogger("minesweeperLogRules");
 
-            //return BuildGame view
-            return View("BuildGame", newGame);
+            try
+            {
+                //call LoadGame from GameBusinessService
+                newGame = service.LoadGame();
+                logger.Info("Successful Load");
+                //return BuildGame view
+                return View("BuildGame", newGame);
+            }
+            catch (Exception e)
+            {
+                logger.Error("Failed to load: " + e.Message);
+                return Content(e.Message);
+            }
         }
 
         public ActionResult HandleRightClick(string mine)

@@ -27,11 +27,13 @@ namespace Minesweeper_Web_App.Controllers
 
             if (success)
             {
+                Session["user"] = user;
                 return View("LoginSuccess", user);
             }
 
             else
             {
+                Session.Clear();
                 return View("LoginFailed");
             }
         }
